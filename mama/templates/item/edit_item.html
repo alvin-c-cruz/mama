@@ -9,7 +9,11 @@
       <td class="col-sm-6 text-center">
         <select name="category_id" id="category_id" class="form-select" autofocus>
           {% for category in categories %}
+            {% if form.category_id == category.id %}
+          <option value="{{ category.id }}" selected>{{ category.description }}</option>
+            {% else %}
           <option value="{{ category.id }}">{{ category.description }}</option>
+            {% endif %}
           {% endfor %}
         </select>
       </td>

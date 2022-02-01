@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block content %}
+<form class="container form" method="post" action="{{ url_for('add_category') }}">
+  {{ csrf_token }}
+  <table class="table table-stripe table-light">
+    <tr class="row">
+      <td class="col-sm-6 text-center">Category</td>
+      <td class="col-sm-6 text-center">
+        <input type="text" name="description" id="description" class="form-control" value="{{ form.description }}"
+               autofocus required>
+      </td>
+    </tr>
+    <tr class="row">
+      <td class="col-sm-6 text-center">Order</td>
+      <td class="col-sm-6 text-center">
+        <input type="text" name="priority" id="priority" class="form-control" value="{{ form.priority }}" required>
+      </td>
+    </tr>
+    <tr class="row">
+      <td colspan="2" class="col-sm-12 text-center">
+        <input type="submit" class="btn btn-success form-control" value="Save">
+      </td>
+    </tr>
+  </table>
+</form>
+{% endblock %}

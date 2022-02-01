@@ -2,6 +2,10 @@
 
 {% block content %}
 <div class="container">
+  <div class="row">
+    <a href="{{ url_for('add_item') }}" class="btn btn-success form-control col-sm-12 text-center">Add Item</a>
+  </div>
+
   {% if items %}
       {% for category in items %}
   <h2>{{ category.description }}</h2>
@@ -14,24 +18,18 @@
       <th class="col-2 text-center">Action</th>
     </tr>
         {% for item in items[category] %}
-          {% if item.quantity %}
-    <tr class="row {% if item.done %}text-primary{% endif %}">
+    <tr class="row">
       <td class="col-2 text-center">{{ item.quantity }}</td>
       <td class="col-4 text-center">{{ item.name }}</td>
       <td class="col-2 text-center">{{ item.price}}</td>
       <td class="col-2 text-center">{{ item.quantity * item.price }}</td>
       <td class="col-2 text-center">
-        <a href="{{ url_for('flip', id=item.id) }}">{% if item.done %}Bought{% else %}Looking{% endif %}</a>
+        <a href="{{ url_for('edit_item', id=item.id) }}">Edit</a>
       </td>
     </tr>
-          {% endif %}
         {% endfor %}
   </table>
       {% endfor %}
-  <div class="row bg-dark text-white">
-    <h2 class="col-6">Total Cost</h2>
-    <h2 class="col-6">{{total}}</h2>
-  </div>
   {% endif %}
 </div>
 {% endblock %}

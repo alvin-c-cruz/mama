@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+
+{% block content %}
+<form class="container form" method="post" action="{{ url_for('add_item') }}">
+  {{ csrf_token }}
+  <table class="table table-stripe table-light">
+    <tr class="row">
+      <td class="col-sm-6 text-center">Category</td>
+      <td class="col-sm-6 text-center">
+        <select name="category_id" id="category_id" class="form-select" autofocus>
+          {% for category in categories %}
+          <option value="{{ category.id }}">{{ category.description }}</option>
+          {% endfor %}
+        </select>
+      </td>
+    </tr>
+    <tr class="row">
+      <td class="col-sm-6 text-center">Quantity</td>
+      <td class="col-sm-6 text-center">
+        <input type="text" name="quantity" id="quantity" class="form-control" value="{{ form.quantity }}"
+               required>
+      </td>
+    </tr>
+    <tr class="row">
+      <td class="col-sm-6 text-center">Item Name</td>
+      <td class="col-sm-6 text-center">
+        <input type="text" name="name" id="name" class="form-control" value="{{ form.name }}" required>
+      </td>
+    </tr>
+    <tr class="row">
+      <td class="col-sm-6 text-center">Price</td>
+      <td class="col-sm-6 text-center">
+        <input type="text" name="price" id="price" class="form-control" value="{{ form.price }}" required>
+      </td>
+    </tr>
+    <tr class="row">
+      <td colspan="2" class="col-sm-6 text-center">
+        <input type="submit" class="btn btn-success form-control" value="Save">
+      </td>
+      <td colspan="2" class="col-sm-6 text-center">
+        <a href="{{ url_for('item') }}" class="btn btn-danger form-control">Back</a>
+      </td>
+    </tr>
+  </table>
+</form>
+{% endblock %}

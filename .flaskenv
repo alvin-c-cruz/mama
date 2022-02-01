@@ -1,0 +1,2 @@
+FLASK_APP=mama
+FLASK_ENV=development
